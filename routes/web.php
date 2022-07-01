@@ -11,19 +11,6 @@
 |
 */
 
-Auth::routes();
-
 Route::get('/', function () {
-    return redirect('login');
-});
-
-Route::get('/home', function () {
-    return view('home');
-});
-
-Route::group(['prefix' => 'dashboard',  'middleware' => ['auth']], function () {
-    Route::resource('users', 'Dashboard\UserController')->except(['show']);
-    Route::resource('patients', 'Dashboard\PatientController')->except(['show']);
-    Route::resource('doctors', 'Dashboard\DoctorController')->except(['show']);
-    Route::resource('schedules', 'Dashboard\ScheduleController')->except(['show']);
+    return view('welcome');
 });
