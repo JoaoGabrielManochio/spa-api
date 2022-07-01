@@ -20,24 +20,6 @@ class CityGroupController extends Controller
      */
     public function storeCityGroup()
     {
-        if (empty(request('name'))) {
-            return response()->json(
-                [
-                    'error' => 'The field name cannot be empty or null',
-                ],
-                422
-            );
-        }
-
-        if (is_null(request('campaign_id'))) {
-            return response()->json(
-                [
-                    'error' => 'The field campaign_id cannot be null',
-                ],
-                422
-            );
-        }
-
         $campaign = $this->cityGroupService->store();
 
         return $campaign;
@@ -74,24 +56,6 @@ class CityGroupController extends Controller
      */
     public function updateCityGroup($id)
     {
-        if (empty(request('name'))) {
-            return response()->json(
-                [
-                    'error' => 'The field name cannot be empty or null',
-                ],
-                422
-            );
-        }
-
-        if (is_null(request('campaign_id'))) {
-            return response()->json(
-                [
-                    'error' => 'The field campaign_id cannot be null',
-                ],
-                422
-            );
-        }
-
         $campaign = $this->cityGroupService->update($id);
 
         return $campaign;

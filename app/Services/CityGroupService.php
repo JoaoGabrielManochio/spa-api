@@ -103,6 +103,22 @@ class CityGroupService {
 
     private function validate($id = 0)
     {
+        if (empty(request('name'))) {
+            return 'The field name cannot be empty or null';
+        }
+
+        if (!is_string(request('name'))) {
+            return 'The field name need to be string';
+        }
+
+        if (is_null(request('campaign_id'))) {
+            return 'The field campaign_id cannot be null';
+        }
+
+        if (!is_integer(request('campaign_id'))) {
+            return 'The field campaign_id need to be integer';
+        }
+
         $hasCityGroupName = CityGroup::where('name', request('name'));
 
         if ($id) {

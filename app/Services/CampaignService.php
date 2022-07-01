@@ -30,13 +30,12 @@ class CampaignService {
     public function store()
     {
 
-        $hasCampaign = Campaign::where('name', request('name'))
-            ->first();
+        $validate = $this->validate();
 
-        if ($hasCampaign) {
+        if ($validate) {
             return response()->json(
                 [
-                    'error' => 'The name ' . request('name') . ' is already used',
+                    'error' => $validate,
                 ],
                 422
             );
@@ -53,6 +52,17 @@ class CampaignService {
             return response()->json(
                 [
                     'error' => 'Campaign not found',
+                ],
+                422
+            );
+        }
+
+        $validate = $this->validate($id);
+
+        if ($validate) {
+            return response()->json(
+                [
+                    'error' => $validate,
                 ],
                 422
             );
@@ -88,5 +98,36 @@ class CampaignService {
         ];
 
         return $fields;
+    }
+
+    private function validate($id = 0)
+    {
+        if (empty(request('name'))) {
+            return 'The field name cannot be empty or null';
+        }
+
+        if (!is_string(request('name'))) {
+            return 'The field name need to be string';
+        }
+
+        if (is_null(request('active'))) {
+            return 'The field active cannot be null';
+        }
+
+        if (!is_integer(request('active'))) {
+            return 'The field active need to be integer';
+        }
+
+        $hasCampaign = Campaign::where('name', request('name'));
+
+        if ($id) {
+            $hasCampaign->where('id', '!=', $id);
+        }
+
+        $hasCampaign = $hasCampaign->first();
+
+        if ($hasCampaign) {
+            return 'The name ' . request('name') . ' is already used';
+        }
     }
 }

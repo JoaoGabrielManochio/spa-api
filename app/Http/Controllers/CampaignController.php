@@ -20,24 +20,6 @@ class CampaignController extends Controller
      */
     public function storeCampaign()
     {
-        if (empty(request('name'))) {
-            return response()->json(
-                [
-                    'error' => 'The field name cannot be empty or null',
-                ],
-                422
-            );
-        }
-
-        if (is_null(request('active'))) {
-            return response()->json(
-                [
-                    'error' => 'The field active cannot be null',
-                ],
-                422
-            );
-        }
-
         $campaign = $this->campaignService->store();
 
         return $campaign;
@@ -74,24 +56,6 @@ class CampaignController extends Controller
      */
     public function updateCampaign($id)
     {
-        if (empty(request('name'))) {
-            return response()->json(
-                [
-                    'error' => 'The field name cannot be empty or null',
-                ],
-                422
-            );
-        }
-
-        if (is_null(request('active'))) {
-            return response()->json(
-                [
-                    'error' => 'The field active cannot be null',
-                ],
-                422
-            );
-        }
-
         $campaign = $this->campaignService->update($id);
 
         return $campaign;
