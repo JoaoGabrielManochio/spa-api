@@ -20,4 +20,9 @@ class Campaign extends Model
     {
         return $this->hasMany(CityGroup::class);
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
