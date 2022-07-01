@@ -8,10 +8,28 @@ Route::group(['prefix' => 'v1'], function () {
         return response()->json(['now' => date('Ymd H:i:s')]);
     });
 
-    // Route::post('token', 'API\UserController@getToken');
+    Route::group(['prefix' => 'city'], function () {
+        Route::get('', 'CityController@getCities');
+        Route::get('/{id}', 'CityController@getCity');
+        Route::put('/{id}', 'CityController@updateCity');
+        Route::delete('/{id}', 'CityController@deleteCity');
+        Route::post('', 'CityController@storeCity');
 
-    // Route::group(['middleware' => ['auth:api']], function () {
-        Route::get('city', 'API\CityController@getCities');
-        Route::get('doctors', 'API\DoctorController@index');
-    // });
+    });
+
+    Route::group(['prefix' => 'campaign'], function () {
+        Route::get('', 'CampaignController@getCampaigns');
+        Route::get('/{id}', 'CampaignController@getCampaign');
+        Route::put('/{id}', 'CampaignController@updateCampaign');
+        Route::delete('/{id}', 'CampaignController@deleteCampaign');
+        Route::post('', 'CampaignController@storeCampaign');
+    });
+
+    Route::group(['prefix' => 'city-group'], function () {
+        Route::get('', 'CityGroupController@getCityGroups');
+        Route::get('/{id}', 'CityGroupController@getCityGroup');
+        Route::put('/{id}', 'CityGroupController@updateCityGroup');
+        Route::delete('/{id}', 'CityGroupController@deleteCityGroup');
+        Route::post('', 'CityGroupController@storeCityGroup');
+    });
 });
