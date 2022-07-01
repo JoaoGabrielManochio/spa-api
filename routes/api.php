@@ -32,4 +32,20 @@ Route::group(['prefix' => 'v1'], function () {
         Route::delete('/{id}', 'CityGroupController@deleteCityGroup');
         Route::post('', 'CityGroupController@storeCityGroup');
     });
+
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('', 'ProductController@getProducts');
+        Route::get('/{id}', 'ProductController@getProduct');
+        Route::put('/{id}', 'ProductController@updateProduct');
+        Route::delete('/{id}', 'ProductController@deleteProduct');
+        Route::post('', 'ProductController@storeProduct');
+    });
+
+    Route::group(['prefix' => 'discount'], function () {
+        Route::get('', 'DiscountController@getDiscounts');
+        Route::get('/{id}', 'DiscountController@getDiscount');
+        Route::put('/{id}', 'DiscountController@updateDiscount');
+        Route::delete('/{id}', 'DiscountController@deleteDiscount');
+        Route::post('', 'DiscountController@storeDiscount');
+    });
 });
