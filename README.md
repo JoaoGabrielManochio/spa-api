@@ -62,3 +62,16 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+Para rodar o projeto, é necessário seguir os passos abaixo:
+
+Após clonar o projeto, é necessário renomear o arquivo ".env.example" para ".env" e logo em seguida rodar o comando "make up". Esse comando irá subir o container do docker e fazer a instalação da vendor do projeto.
+
+A aplicação irá rodar na url http://localhost:8005/
+
+As informações para conectar no banco de dados está no .env.example
+
+A coleção com os request de todos os métodos, está no arquivo "Insomnia_2022-07-04.json", esse arquivo pode ser importado no Insomnia.
+
+
